@@ -25,4 +25,9 @@ RUN dolfin-convert r2a15n200.msh r2a15n200.xml
 ENV TERM xterm
 
 WORKDIR /AirFoil/navier_stokes_solver
-CMD ./airfoil 10 0.0001 10. 1 /AirFoil/cloudnaca/msh/r2a15n200.xml
+
+CMD ["/bin/sh"]
+
+# RUN THE FOLLOWING INSIDE THE CONTAINER AFTER IT STARTS 
+#
+# sudo ./airfoil 10 0.0001 10. 1 /AirFoil/cloudnaca/msh/r2a15n200.xml
