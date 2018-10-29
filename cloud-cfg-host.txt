@@ -26,5 +26,4 @@ runcmd:
  - sudo apt-get install -y docker-ce
  - sudo systemctl enable docker
  - sudo systemctl start docker
- - sudo docker pull####from some repo###
  - sudo docker build image ###Change to real path####
