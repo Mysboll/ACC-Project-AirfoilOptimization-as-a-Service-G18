@@ -9,6 +9,3 @@ def airfoil_simulation(angle, n_nodes, n_levels, num_samples, viscosity, velocit
     results = subprocess.run(['docker', 'exec', '-it', 'airfoil', 'cat', 'results/drag_ligt.m'], stdout=subprocess.PIPE)
     print(results.stdout)
     return results.stdout
-
-@app.tasks
-def sumcalc():
