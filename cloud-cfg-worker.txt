@@ -16,10 +16,12 @@ runcmd:
  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
  - sudo apt-get -y update
+ - scp -i /Users/salmantoor/.ssh/mist-sztoor murtazo.tgz ubuntu@89.45.233.15:/home/ubuntu/.
  - apt-cache policy docker-ce
  - sudo apt-get install -y docker-ce
  - sudo systemctl enable docker
  - sudo systemctl start docker
- - sudo docker pull####from some repo###
+ - sudo git clone https://github.com/Mysboll/applied_cloudcomputing_project_group18.git
+ - sudo git branch cloud_init_configs
  - sudo docker build image ###Change to real path####
  - sudo celery -A tasks worker -l info
