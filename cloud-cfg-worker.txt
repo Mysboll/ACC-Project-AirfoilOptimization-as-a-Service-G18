@@ -22,7 +22,7 @@ runcmd:
  - sudo systemctl start docker
  - sudo git clone https://github.com/Mysboll/applied_cloudcomputing_project_group18.git
  - sudo cd applied_cloudcomputing_project_group18
- - sudo checkout dev
+ - sudo git checkout dev
  - sudo docker pull soberbot94/fenicsproject-airfoil:latest
  - sudo docker run --name airfoil -d -it soberbot94/fenicsproject-airfoil:latest
  - sudo celery -A docker_call worker -l info
