@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from celery import chord
 from datetime import datetime
-from docker_call import airfoil_simulation, sumcalc
+from docker_call import airfoil_simulation
 
 app = Flask(__name__)
 
@@ -19,12 +19,14 @@ def airfoil_calculation():
     start = datetime.today()
     anglediff = (angle_stop - angle_start)/n_angles
     header = []
+
+    """group(airfoil_simulation.s(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (n_angles))()"""
     for i in range(n_angles):
         angle = angle_start+i*anglediff
         header.append(airfoil_simulation.s(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration))
 
-    callback = sumcalc.s()
-    result = chord(header)(callback)
+    ###callback = sumcalc.s()
+    result = chord(header)()
     ret = jsonify(result.wait())
     stop = datetime.today()
     print (stop - start)
