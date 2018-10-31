@@ -13,22 +13,17 @@ def airfoil_calculation():
     n_nodes = int(request.args.get('n_nodes'))
     n_levels = int(request.args.get('n_levels'))
     num_samples = int(request.args.get('num_samples'))
-    viscosity = float(request.args.get('viscosity'))
-    velocity = float(request.args.get('velocity'))
-    duration = float(request.args.get('duration'))
+    viscosity = request.args.get('viscosity')
+    velocity = request.args.get('velocity')
+    duration = request.args.get('duration')
     start = datetime.today()
     anglediff = ((angle_stop - angle_start)/n_angles)
     header = []
     print(anglediff)
 
-    group(airfoil_simulation.s(angle_start+i*anglediff, n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (n_angles))()
-    """for i in range(n_angles):
-        angle = angle_start+i*anglediff
-        header.append(airfoil_simulation.s(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration))"""
+    jobs = group(airfoil_simulation.s(angle_start+i*anglediff, n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (n_angles))
 
-    ###callback = sumcalc.s()
-    result = chord(header)()
-    ret = jsonify(result.wait())
+    ret = jsonify(jobs.apply_async())
     stop = datetime.today()
     print (stop - start)
     return ret
@@ -38,3 +33,8 @@ def airfoil_calculation():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug = False)
+
+
+"""for i in range(n_angles):
+        angle = angle_start+i*anglediff
+        header.append(airfoil_simulation.s(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration))"""
