@@ -22,7 +22,7 @@ def airfoil_calculation():
     print(anglediff)
 
 
-    jobs = group(airfoil_simulation.s(int(angle_start)+i*anglediff, n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (int(n_angles)))
+    jobs = group(airfoil_simulation.s(str(int(angle_start)+i*anglediff), n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (int(n_angles)))
 
     ret = jsonify(jobs.apply_async())
     stop = datetime.today()
