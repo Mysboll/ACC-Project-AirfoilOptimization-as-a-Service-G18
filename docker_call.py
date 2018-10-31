@@ -1,7 +1,7 @@
 from celery import Celery
 import subprocess
 
-app = Celery('docker_call', backend='amqp', broker='pyamqp://user:password@192.168.1.33:5672/vhost')
+app = Celery('tasks, backend='amqp', broker='pyamqp://user:password@192.168.1.59:5672/vhost')
 
 @app.tasks
 def airfoil_simulation(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration):

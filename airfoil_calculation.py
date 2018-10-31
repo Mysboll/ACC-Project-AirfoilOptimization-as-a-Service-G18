@@ -12,13 +12,14 @@ def airfoil_calculation():
     n_angles = request.args.get('n_angles')
     n_nodes = request.args.get('n_nodes')
     n_levels = request.args.get('n_levels')
-    num_samples = request.arg.get('num_samples')
-    viscosity = request.arg.get('viscosity')
-    velocity = request.arg.get('velocity')
-    duration = request.arg.get('duration')
+    num_samples = request.args.get('num_samples')
+    viscosity = request.args.get('viscosity')
+    velocity = request.args.get('velocity')
+    duration = request.args.get('duration')
     start = datetime.today()
-    anglediff = (angle_stop - angle_start)/n_angles
+    anglediff = (int(angle_stop) - int(angle_start))/int(n_angles)
     header = []
+    print(anglediff)
 
     """group(airfoil_simulation.s(angle, n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (n_angles))()"""
     for i in range(n_angles):
@@ -31,7 +32,8 @@ def airfoil_calculation():
     stop = datetime.today()
     print (stop - start)
     return ret
-
+"""curl "http://130.238.29.7:5000/airfoil/api/angle_start=10&angle_stop=16&n_angles=2&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
+"""
 
 
 if __name__ == '__main__':
