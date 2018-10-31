@@ -5,7 +5,7 @@ from docker_call import airfoil_simulation
 
 app = Flask(__name__)
 
-@app.route('/airfoil/api/', methods=['GET'])
+@app.route('/airfoil/api', methods=['GET'])
 def airfoil_calculation():
     angle_start = request.args.get('angle_start')
     angle_stop = request.args.get('angle_stop')
@@ -32,7 +32,7 @@ def airfoil_calculation():
     stop = datetime.today()
     print (stop - start)
     return ret
-"""curl "http://130.238.29.7:5000/airfoil/api/angle_start=10&angle_stop=16&n_angles=2&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
+"""curl "http://130.238.29.7:5000/airfoil/api?angle_start=10&angle_stop=16&n_angles=2&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
 """
 
 
