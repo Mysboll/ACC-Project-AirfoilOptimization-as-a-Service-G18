@@ -22,13 +22,13 @@ def airfoil_calculation():
     print(anglediff)
 
 
-    jobs = group(airfoil_simulation.s(str(int(angle_start)+i*anglediff), n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (int(n_angles)))
+    jobs = group(airfoil_simulation.s(str(int(angle_start)+int(i*anglediff)), n_nodes, n_levels, num_samples, viscosity, velocity, duration) for i in range (int(n_angles)))
 
     ret = jsonify(jobs.apply_async())
     stop = datetime.today()
     print (stop - start)
     return ret
-"""curl "http://130.238.29.78:5000/airfoil/api?angle_start=10&angle_stop=16&n_angles=2&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
+"""curl "http://130.238.29.78:5000/airfoil/api?angle_start=10&angle_stop=10&n_angles=1&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
 """
 
 
