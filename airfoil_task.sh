@@ -8,7 +8,7 @@ viscosity="$5"
 velocity="$4"
 duration="$7"
 
-docker exec -it airfoil /AirFoil/cloudnaca/runme.sh $angle $angle+1 1 $n_nodes $n_levels
+docker exec -it airfoil /AirFoil/cloudnaca/runme.sh $angle $angle 1 $n_nodes $n_levels
 
 docker exec -it airfoil dolfin-convert /AirFoil/cloudnaca/msh/r${n_levels}a${angle}n${n_nodes}.msh /AirFoil/cloudnaca/msh/r${levels}a${angle}n${n_nodes}.xml
 
