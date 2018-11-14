@@ -28,7 +28,7 @@ def airfoil_calculation():
     stop = datetime.today()
     print (stop - start)
     return ret
-"""curl "http://130.238.29.78:5000/airfoil/api?angle_start=10&angle_stop=10&n_angles=1&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
+"""curl "http://130.238.29.78:5000/airfoil/api?angle_start=10&angle_stop=15&n_angles=6&n_nodes=100&n_levels=1&num_samples=10&viscosity=0.0001&velocity=10&duration=1"
 """
 
 
